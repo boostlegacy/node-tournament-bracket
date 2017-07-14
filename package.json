@@ -1,0 +1,31 @@
+{
+  "name": "tournament-bracket",
+  "version": "0.1.0",
+  "description": "A data structure for creating a tournament bracket with seeding",
+  "main": "out/index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha",
+    "build": "./node_modules/.bin/tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pfeiferj/node-tournament-bracket.git"
+  },
+  "keywords": [
+    "tournament",
+    "bracket"
+  ],
+  "author": "pfeiferj",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pfeiferj/node-tournament-bracket/issues"
+  },
+  "homepage": "https://github.com/pfeiferj/node-tournament-bracket#readme",
+  "devDependencies": {
+    "@types/node": "^8.0.13",
+    "chai": "^4.1.0",
+    "mocha": "^3.4.2",
+    "sinon": "^2.3.8",
+    "typescript": "^2.4.1"
+  }
+}
