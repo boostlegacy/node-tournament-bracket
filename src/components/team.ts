@@ -10,6 +10,8 @@ export interface round {
     round: number;
     bracket_location: string;
     win: boolean;
+    wins: number;
+    losses: number;
 }
 export class team{
     name:string;
