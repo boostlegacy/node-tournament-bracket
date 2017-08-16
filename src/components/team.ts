@@ -5,6 +5,7 @@ export interface team_constructor_options {
     seed_type?: "Approximate" | "Exact";
     rounds?: round[];
     num_approximate_steps?: number;
+    players?: string[];
 }
 export interface round {
     round: number;
@@ -13,18 +14,20 @@ export interface round {
     wins: number;
     losses: number;
 }
-export class team{
+export class Team{
     name:string;
     size:number;
     seed:number;
     seed_type: "Approximate" | "Exact";
     rounds: round[];
-    constructor({name = "", size = 1, seed = -1, seed_type = "Approximate", rounds = []}:team_constructor_options = {}){
+    players: string[];
+    constructor({name = "", size = 1, seed = -1, seed_type = "Approximate", rounds = [], players = []}:team_constructor_options = {}){
         this.name = name;
         this.size = size;
         this.seed = seed;
         this.seed_type = seed_type;
         this.rounds = [];
+        this.players = players;
     }
 }
 

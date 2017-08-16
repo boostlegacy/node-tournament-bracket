@@ -1,13 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-class team {
-    constructor({ name = "", size = 1, seed = -1, seed_type = "Approximate", rounds = [] } = {}) {
+class Team {
+    constructor({ name = "", size = 1, seed = -1, seed_type = "Approximate", rounds = [], players = [] } = {}) {
         this.name = name;
         this.size = size;
         this.seed = seed;
         this.seed_type = seed_type;
         this.rounds = [];
+        this.players = players;
     }
 }
-exports.team = team;
+exports.Team = Team;
 //# sourceMappingURL=team.js.map
