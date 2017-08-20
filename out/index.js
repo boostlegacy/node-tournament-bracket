@@ -171,14 +171,21 @@ class Bracket {
                 let round = this.get_round(2);
                 if (!(round instanceof Error)) {
                     for (let node of round) {
-                        node.name = names[0];
+                        node.name = node.round + names[0];
+                        let set_names = (n) => {
+                            if (n.next_node !== null && n.next_node.upper_node !== null && n.next_node.upper_node.name === n.name) {
+                                n.next_node.name = n.next_node.round + names[0];
+                                set_names(n.next_node);
+                            }
+                        };
+                        set_names(node);
                         names = names.slice(1);
                     }
                 }
                 round = this.get_round(1);
                 if (!(round instanceof Error)) {
                     for (let node of round) {
-                        node.name = names[0];
+                        node.name = node.round + names[0];
                         names = names.slice(1);
                     }
                 }
@@ -187,8 +194,50 @@ class Bracket {
                 let round = this.get_round(1);
                 if (!(round instanceof Error)) {
                     for (let node of round) {
-                        node.name = names[0];
+                        node.name = node.round + names[0];
+                        let set_names = (n) => {
+                            if (n.next_node !== null && n.next_node.upper_node !== null && n.next_node.upper_node.name === n.name) {
+                                n.next_node.name = n.next_node.round + names[0];
+                                set_names(n.next_node);
+                            }
+                        };
+                        set_names(node);
                         names = names.slice(1);
+                    }
+                }
+            }
+        }
+        if (this.rounds > 0) {
+            for (let i = 1; i <= this.rounds; i++) {
+                let round = this.get_round(i);
+                if (!(round instanceof Error)) {
+                    for (let node of round) {
+                        if (node.team_upper !== null && node.team_upper.rounds.length > 0) {
+                            let this_location_results = node.team_upper.rounds.find((element) => {
+                                if (element.bracket_location === node.name) {
+                                    return true;
+                                }
+                                return false;
+                            });
+                            if (this_location_results !== undefined) {
+                                for (let j = 0; j < this_location_results.wins; j++) {
+                                    node.declare_single_win("upper");
+                                }
+                            }
+                        }
+                        if (node.team_lower !== null && node.team_lower.rounds.length > 0) {
+                            let this_location_results = node.team_lower.rounds.find((element) => {
+                                if (element.bracket_location === node.name) {
+                                    return true;
+                                }
+                                return false;
+                            });
+                            if (this_location_results !== undefined) {
+                                for (let j = 0; j < this_location_results.wins; j++) {
+                                    node.declare_single_win("lower");
+                                }
+                            }
+                        }
                     }
                 }
             }

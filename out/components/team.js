@@ -6,7 +6,7 @@ class Team {
         this.size = size;
         this.seed = seed;
         this.seed_type = seed_type;
-        this.rounds = [];
+        this.rounds = rounds;
         this.players = players;
     }
 }
